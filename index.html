@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>Child B</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" lang="javascript" src="https://cdns.ru1.gigya.com/js/gigya.js?apikey=3_P2v0mGjDMLBuq8s6uCpZOTgO93y0Sp8iVUZ9FL17oYyeV_-0PpdrS4zw0U3M69dF">
+  </script>
+</head>
+<body>
+    <main>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <img id="sap-logo" src="img/logo.svg" alt="SAP logo"> </img>
+          <h2>SAP CDC GIGYA</h2>
+        </div>
+
+        <div class="login-buttons">
+          <button class="glow-on-hover" id="signin-btn" type="button" name="button"><a href="#" onclick="gigya.accounts.showScreenSet(paramsRegister);">Register</a></button>
+          <button class="glow-on-hover" id="signin-btn" type="button" name="button"><a href="#" onclick="gigya.accounts.showScreenSet(paramsLogin);">Login</a></button>
+          <button class="glow-on-hover" id="login-btn" type="button" name="button"><a href="https://central-login-page.vercel.app/centralLogin.html" onclick="SSOLogin()">SSO Login</a></button>
+          <button class="glow-on-hover" id="edit" type="button" name="button"><a href="#" onclick="gigya.accounts.showScreenSet(paramsProfileUpdate);">Edit Your Profile</a></button>
+          <button class="glow-on-hover" id="logout" type="button" name="button"><a href="#" onclick="gigya.accounts.logout();">Logout</a></button>
+        </div>
+      </nav>
+
+      <contaier class="reglog-wrapper">
+        <div id="my-reglog"></div>
+      </contaier>
+
+    </header>
+
+
+    <footer>
+
+
+
+    </footer>
+  </main>
+<script>
+gigya.socialize.addEventHandlers({
+        onLogin: editProfileScreen});
+
+        function editProfileScreen(eventObj) {
+                   gigya.accounts.showScreenSet({screenSet:'profileUpdate - Site C Server', containerID: "my-reglog"})
+                   }
+
+    // Load Login screen
+    var paramsLogin = {
+      screenSet: "RegLog - Site C Server",
+      containerID: "my-reglog",
+      onLogin: editProfileScreen
+        }
+
+
+    // Load Register Screen
+    var paramsRegister = {
+      screenSet: "RegLog - Site C Server",
+      containerID: "my-reglog",
+      startScreen: "anton-register-screen",
+      onLogin: editProfileScreen
+        }
+
+
+        // Load Edit profile screen
+    var paramsProfileUpdate = {
+      screenSet: "profileUpdate - Site C Server",
+      containerID: "my-reglog"
+        }
+
+
+function SSOLogin () {
+  gigya.sso.login(
+{
+  authFlow: 'redirect'
+
+});
+}
+</script>
+
+
+</body>
+
+</html>
